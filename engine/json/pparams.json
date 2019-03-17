@@ -1,0 +1,30 @@
+{
+    "conversation_line_cache_size": 1e7,
+    "output_file_size": 2e8,
+    "print_every": 1000,
+    "subreddit_whitelist": [],
+    "subreddit_blacklist": [
+        "announcements",
+        "blog",
+        "CasualPokemonTrades",
+        "pokemontrades",
+        "YamakuHighSchool",
+        "XMenRP"
+    ],
+    "substring_blacklist": [
+        "[",
+        "http://",
+        "https://",
+        " r/",
+        " u/",
+        "/r/",
+        "/u/",
+        "reddit",
+        "Reddit",
+        "upvote",
+        "downvote",
+        "upvoting",
+        "downvoting",
+        "OOC:"
+    ]
+}

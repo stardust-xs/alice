@@ -1,0 +1,136 @@
+X: What time is it ?
+A: It is _xa_taught_value_current_time .
+X: What is the current time ?
+A: It is _xa_taught_value_current_time .
+X: What 's the time now ?
+A: It is _xa_taught_value_current_time .
+X: What time is it now ?
+A: It is _xa_taught_value_current_time .
+X: What day is it today ?
+A: Today is _xa_taught_value_whats_today .
+X: Which day is today ?
+A: Today is _xa_taught_value_whats_today .
+X: What day is today ?
+A: Today is _xa_taught_value_whats_today .
+X: What is today 's day ?
+A: Today is _xa_taught_value_whats_today .
+X: What date is today ?
+A: Today is _xa_taught_value_whats_today_date .
+X: What 's today 's date ?
+A: Today is _xa_taught_value_whats_today_date .
+X: What is today 's date ?
+A: Today is _xa_taught_value_whats_today_date .
+X: What is the date today ?
+A: Today is _xa_taught_value_whats_today_date .
+X: What year is it ?
+A: It is _xa_taught_value_whats_today_year .
+X: What year is it today ?
+A: It is _xa_taught_value_whats_today_year .
+X: What 's the current year ?
+A: It is _xa_taught_value_whats_today_year .
+X: Which year is it ?
+A: It is _xa_taught_value_whats_today_year .
+X: Which year is it now ?
+A: It is _xa_taught_value_whats_today_year .
+===
+X: What time is it , Alice ?
+A: It is _xa_taught_value_current_time .
+X: Alice , what 's the time now ?
+A: Currently it is _xa_taught_value_current_time .
+X: What time is it now , Alice ?
+A: It is _xa_taught_value_current_time .
+X: Alice , what is the time now ?
+A: Currently it is _xa_taught_value_current_time .
+X: What day is it today , Alice ?
+A: Today is _xa_taught_value_whats_today .
+X: What date is today , Alice ?
+A: Today is _xa_taught_value_whats_today_date .
+X: Alice , what 's today 's day ?
+A: Today is _xa_taught_value_whats_today .
+X: Alice , what is today 's day ?
+A: Today is _xa_taught_value_whats_today .
+X: What 's today 's date , Alice ?
+A: Today is _xa_taught_value_whats_today_date .
+X: What is the date today , Alice ?
+A: Today is _xa_taught_value_whats_today_date .
+X: Alice , what is today 's date ?
+A: Today is _xa_taught_value_whats_today_date .
+X: Alice , what date is today ?
+A: Today is _xa_taught_value_whats_today_date .
+X: What year is it , Alice ?
+A: It is _xa_taught_value_whats_today_year .
+X: What year is it today , Alice ?
+A: It is _xa_taught_value_whats_today_year .
+X: Alice , what is the current year ?
+A: It is _xa_taught_value_whats_today_year .
+X: Alice , what year is it ?
+A: It is _xa_taught_value_whats_today_year .
+X: Alice , which year is it ?
+A: It is _xa_taught_value_whats_today_year .
+===
+X: Can you tell me what time it is now , Alice ?
+A: It is _xa_taught_value_current_time .
+X: Tell me what time it is please .
+A: It is _xa_taught_value_current_time .
+X: Tell me what time it is .
+A: It is _xa_taught_value_current_time .
+X: Can you tell me what 's today 's date , Alice ?
+A: Today is _xa_taught_value_whats_today_date .
+X: Tell me today 's date please .
+A: Today is _xa_taught_value_whats_today_date .
+===
+X: What day was it yesterday ?
+A: It was _xa_taught_value_weekday_status_queue1_d_1 .
+X: What was yesterday 's day ?
+A: It was _xa_taught_value_weekday_status_queue1_d_1 .
+X: What was the date yesterday ?
+A: It was _xa_taught_value_weekday_status_queue1_d_1 .
+X: What was yesterday 's date ?
+A: It was _xa_taught_value_weekday_status_queue1_d_1 .
+===
+X: Can you tell me what 's yesterday 's date , Alice ?
+A: It was _xa_taught_value_weekday_status_queue1_d_1 .
+X: Alice , what was yesterday 's date ?
+A: It was _xa_taught_value_weekday_status_queue1_d_1 .
+X: Alice , what was yesterday 's day ?
+A: It was _xa_taught_value_weekday_status_queue1_d_1 .
+X: Tell me yesterday 's date .
+A: It was _xa_taught_value_weekday_status_queue1_d_1 .
+X: Alice , tell me yesterday 's date .
+A: It was _xa_taught_value_weekday_status_queue1_d_1 .
+X: Alice , tell me yesterday 's day .
+A: It was _xa_taught_value_weekday_status_queue1_d_1 .
+===
+X: What was the date the day before yesterday ?
+A: It was _xa_taught_value_weekday_status_queue1_d_2 .
+X: What was the date day before yesterday ?
+A: It was _xa_taught_value_weekday_status_queue1_d_2 .
+X: What is the date the day before yesterday ?
+A: It was _xa_taught_value_weekday_status_queue1_d_2 .
+X: What 's the date the day before yesterday ?
+A: It was _xa_taught_value_weekday_status_queue1_d_2 .
+===
+X: What day is it tomorrow ?
+A: It is _xa_taught_value_weekday_status_queue1_d1 .
+X: What is the date tomorrow ?
+A: It is _xa_taught_value_weekday_status_queue1_d1 .
+X: What 's the date tomorrow ?
+A: It is _xa_taught_value_weekday_status_queue1_d1 .
+X: What 's tomorrow 's date ?
+A: It is _xa_taught_value_weekday_status_queue1_d1 .
+X: What date it will be tomorrow ?
+A: It will be _xa_taught_value_weekday_status_queue1_d1 .
+===
+X: Can you tell me what 's tomorrow 's date , Alice ?
+A: It is _xa_taught_value_weekday_status_queue1_d1 .
+X: Alice, what 's tomorrow 's date ?
+A: It is _xa_taught_value_weekday_status_queue1_d1 .
+X: Tell me tomorrow 's date please .
+A: It is _xa_taught_value_weekday_status_queue1_d1 .
+===
+X: What is the date the day after tomorrow ?
+A: It is _xa_taught_value_weekday_status_queue1_d2 .
+X: What is the date day after tomorrow ?
+A: It is _xa_taught_value_weekday_status_queue1_d2 .
+X: What 's the date the day after tomorrow ?
+A: It is _xa_taught_value_weekday_status_queue1_d2 .

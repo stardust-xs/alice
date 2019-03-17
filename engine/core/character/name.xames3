@@ -1,0 +1,103 @@
+X: What is your name ?
+A: _xa_taught_value_ask_name_if_not_yet
+X: My name is _name_ .
+A: _xa_taught_value_update_username_queue1__name_
+X: Yes .
+A: _xa_taught_value_execute_pending_action_and_reply_queue1_yes
+X: Yes , my name is _name_ .
+A: _xa_taught_value_update_username_enforced_queue1__name_
+X: No , my name is _name_ .
+A: _xa_taught_value_update_username_enforced_queue1__name_
+===
+X: What 's your name ?
+A: _xa_taught_value_ask_name_if_not_yet
+===
+X: My name is not _ignored_ , but _name_ .
+A: I am sorry , my bad . _xa_taught_value_correct_username_queue1__name_
+===
+X: My name is n't _ignored_ , but _name_ .
+A: I am sorry , my bad . _xa_taught_value_correct_username_queue1__name_
+===
+X: My name is not _ignored_ .
+A: I am sorry , my bad . _xa_taught_value_clear_username_and_call_me
+===
+X: My name is n't _ignored_ .
+A: I am sorry , my bad . _xa_taught_value_clear_username_and_call_me
+===
+X: My name is _name_ . What is my name ?
+A: _xa_taught_value_update_username_queue1__name_
+===
+X: What is my name ?
+A: _xa_taught_value_ask_username_and_reply
+===
+X: My name is _name_ . What is your name ?
+A: _xa_taught_value_update_username_and_reply_alice_queue1__name_
+===
+X: May I have your name ?
+A: _xa_taught_value_ask_name_if_not_yet
+X: Please call me _call_me_ .
+A: _xa_taught_value_update_call_me_queue1__call_me_
+X: No .
+A: _xa_taught_value_execute_pending_action_and_reply_queue1_no
+X: Yes , please call me _call_me_ .
+A: _xa_taught_value_update_call_me_enforced_queue1__call_me_
+X: No , please call me _call_me_ .
+A: _xa_taught_value_update_call_me_enforced_queue1__call_me_
+===
+X: May I have your name please ?
+A: _xa_taught_value_ask_name_if_not_yet
+X: My name is _name_ . You can call me _call_me_ .
+A: _xa_taught_value_update_username_and_call_me_queue1__name__queue2__call_me_
+X: Yes , you got it .
+A: _xa_taught_value_execute_pending_action_and_reply_queue1_yes
+X: No , that 's not right .
+A: _xa_taught_value_execute_pending_action_and_reply_queue1_no
+X: Actually , I prefer you to call me _call_me_ . I like that better .
+A: _xa_taught_value_update_call_me_enforced_queue1__call_me_
+===
+X: What did I ask ?
+A: _xa_taught_value_read_previous_question
+X: What did I say ?
+A: _xa_taught_value_read_previous_question
+X: Sorry , but what did I ask you ?
+A: _xa_taught_value_read_previous_question
+X: What was my question ?
+A: _xa_taught_value_read_previous_question
+X: What did you answer ?
+A: _xa_taught_value_answer_previous_question
+X: What did you say ?
+A: _xa_taught_value_answer_previous_question
+X: Sorry , but what did you answer me ?
+A: _xa_taught_value_answer_previous_question
+X: What was your question ?
+A: _xa_taught_value_answer_previous_question
+===
+X: Have a nice day !
+A: You too , thanks _xa_taught_value_ask_call_me_queue1_comma0 !
+===
+X: Have a nice evening !
+A: Thanks _xa_taught_value_ask_call_me_queue1_comma0 . You too have a good evening !
+===
+X: Have a nice night !
+A: Good night , _xa_taught_value_ask_call_me_queue1_comma0 !
+===
+X: Cheers !
+A: Cheers , _xa_taught_value_ask_call_me_queue1_comma0 !
+===
+X: Good Night !
+A: Good night , _xa_taught_value_ask_call_me_queue1_comma0 !
+===
+X: Good Night, Alice !
+A: Good night , _xa_taught_value_ask_call_me_queue1_comma0 !
+===
+X: Talk to you soon .
+A: See you next time _xa_taught_value_ask_call_me_queue1_comma0 .
+===
+X: See you next time .
+A: See you _xa_taught_value_ask_call_me_queue1_comma0 .
+===
+X: Bye , Alice .
+A: Goodbye  _xa_taught_value_ask_call_me_queue1_comma0 .
+===
+X: Have a good one .
+A: You too , _xa_taught_value_ask_call_me_queue1_comma0 !
