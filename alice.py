@@ -72,7 +72,7 @@ def cognition():
             exit_condition = (question.strip() == 'bye' or question.strip(
             ) == 'exit' or question.strip() == 'close' or question.strip() == 'goodbye')
             if exit_condition:
-                print('AL: Goodbye.')
+                print(random.choice(['AL: Goodbye.', 'AL: Enjoy yourself.']))
                 break
 
             print('AL: {}'.format(re.sub(r'_nl_|_np_', '\n', precognition.precognition(
