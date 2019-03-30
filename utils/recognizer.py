@@ -57,7 +57,10 @@ def check_patterns_and_replace(question):
     if not pattern_matched:
         pattern_matched, new_sentence, queue_list = _check_google_search_and_replace(
             new_sentence)
-    return pattern_matched, new_sentence, queue_list
+
+    if not pattern_matched:
+        pattern_matched, new_sentence, queue_list = _check_wikipedia_search_and_replace(
+            new_sentence)
 
 
 def _check_arithmetic_pattern_and_replace(sentence):
@@ -188,10 +191,10 @@ def _check_not_username_pattern_and_replace(sentence):
 
     patt_not_but = re.compile(
         r'(\s|^)my\s+name\s+is\s+(not|n\'t)\s+(.+?)(\s\.|\s,|\s!)\s*but\s+(.+?)(\s\.|\s,|\s!|$)', re.IGNORECASE)
-    math_not_but = re.search(patt_not_but, tmp_sentence)
-
     patt_not = re.compile(
         r'(\s|^)my\s+name\s+is\s+(not|n\'t)\s+(.+?)(\s\.|\s,|\s!|$)', re.IGNORECASE)
+
+    math_not_but = re.search(patt_not_but, tmp_sentence)
     math_not = re.search(patt_not, tmp_sentence)
 
     queue_list = []
@@ -269,20 +272,31 @@ def _check_google_search_and_replace(sentence):
     tokens = nltk.word_tokenize(sentence)
     tmp_sentence = ' '.join(tokens[:]).strip()
 
-    patt_name = re.compile(
-        r'(\s|^)alice\s+google\s+(.+?)(\s\.|\s,|\s!|$)', re.IGNORECASE)
+    patt_name_1 = re.compile(
+        r'(\s|^)search\s+(.+?)\son+\s+((web|the\sweb)|(google)|(internet|the\sinternet)|(net|the\snet))', re.IGNORECASE)
+    patt_name_2 = re.compile(
+        r'(\s|^)search\s+for\s+(.+?)\son+\s+((web|the\sweb)|(google)|(internet|the\sinternet)|(net|the\snet))', re.IGNORECASE)
 
-    google_search = re.search(patt_name, tmp_sentence)
+    google_search_1 = re.search(patt_name_1, tmp_sentence)
+    google_search_2 = re.search(patt_name_2, tmp_sentence)
     queue_list = []
+
     found = 0
-    if google_search:
-        google_open = google_search.group(2).strip()
+
+    if google_search_2:
+        google_open = google_search_2.group(2).strip()
         queue_list.append(google_open)
         new_sentence = sentence.replace(google_open, ' _google_ ')
         found += 1
     else:
-        queue_list.append('')
-        new_sentence = sentence
+        if google_search_1:
+            google_open = google_search_1.group(2).strip()
+            queue_list.append(google_open)
+            new_sentence = sentence.replace(google_open, ' _google_ ')
+            found += 1
+        else:
+            queue_list.append('')
+            new_sentence = sentence
 
     if found >= 1:
         return True, new_sentence, queue_list
@@ -290,7 +304,66 @@ def _check_google_search_and_replace(sentence):
         return False, sentence, queue_list
 
 
+def _check_wikipedia_search_and_replace(sentence):
+    """
+    Checks if search on wikipedia is asked during inference.
+
+    Arguments:
+        sentence: Statement during inference.
+    """
+    pass
+#     tokens = nltk.word_tokenize(sentence)
+#     tmp_sentence = ' '.join(tokens[:]).strip()
+#
+#     patt_name_1 = re.compile(
+#         r'(\s|^)search\s+(.+?)\son+\s+((wikipedia|the\swikipedia))', re.IGNORECASE)
+#     patt_name_2 = re.compile(
+#         r'(\s|^)search\s+for\s+(.+?)\son+\s+((wikipedia|the\swikipedia))', re.IGNORECASE)
+#     patt_name_3 = re.compile(
+#         r'(^)who\s+is\s+(([A-Za-z]+[,.]?[ ]?|[a-z]+[\'-]?)+)+($|\?)', re.IGNORECASE)
+#
+#     wikipedia_search_1 = re.search(patt_name_1, tmp_sentence)
+#     wikipedia_search_2 = re.search(patt_name_2, tmp_sentence)
+#     wikipedia_search_3 = re.search(patt_name_3, tmp_sentence)
+#     queue_list = []
+#
+#     found = 0
+#
+#     if wikipedia_search_3:
+#         wikipedia_open = wikipedia_search_3.group(2).strip()
+#         queue_list.append(wikipedia_open)
+#         new_sentence = sentence.replace(wikipedia_open, ' _wikipedia_ ')
+#         found += 1
+#     else:
+#         if wikipedia_search_2:
+#             wikipedia_open = wikipedia_search_2.group(2).strip()
+#             queue_list.append(wikipedia_open)
+#             new_sentence = sentence.replace(wikipedia_open, ' _wikipedia_ ')
+#             found += 1
+#         else:
+#             if wikipedia_search_1:
+#                 wikipedia_open = wikipedia_search_1.group(2).strip()
+#                 queue_list.append(wikipedia_open)
+#                 new_sentence = sentence.replace(
+#                     wikipedia_open, ' _wikipedia_ ')
+#                 found += 1
+#             else:
+#                 queue_list.append('')
+#                 new_sentence = sentence
+#
+#     if found >= 1:
+#         return True, new_sentence, queue_list
+#     else:
+#         return False, sentence, queue_list
+
+
 # if __name__ == '__main__':
+#
+#     sentence = 'who is donald trump?'
+#     print('# {}'.format(sentence))
+#     pattern, ns, ql = _check_wikipedia_search_and_replace(sentence)
+#     print(pattern, ns, ql)
+#
 #     sentence = 'My name is akshay mestry. Please call me Mr. XA.'
 #     print('# {}'.format(sentence))
 #     pattern, ns, ql = _check_username_call_me_pattern_and_replace(sentence)
@@ -301,10 +374,6 @@ def _check_google_search_and_replace(sentence):
 #     pattern, ns, ql = _check_username_call_me_pattern_and_replace(sentence)
 #     print(pattern, ns, ql)
 #
-#     sentence = 'alice google Mr. XA.'
-#     print('# {}'.format(sentence))
-#     pattern, ns, ql = _check_google_search_and_replace(sentence)
-#     print(pattern, ns, ql)
 #
 #     sentence = 'Call me Ms. Patel please.'
 #     print('# {}'.format(sentence))

@@ -89,7 +89,7 @@ print_alice = 'A . L . I . C . E '
 shortname = 'Alice'
 fullname = 'A Logically Interacting Computing Entity'
 codename = 'cassiopeia'
-current_version = '1.2.4.20190318'
+current_version = '1.2.4.20190325'
 gender = random.choice(['Woman', 'Girl', 'Female', 'Lady'])
 created_date = birthday = date(2018, 11, 27)
 today_date = date.today()

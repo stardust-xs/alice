@@ -1,3 +1,18 @@
-X: Alice google _google_ .
+X: Search for _google_ on google .
+A: _xa_taught_value_google_this_queue1__google_
+===
+X: Search _google_ on google .
+A: _xa_taught_value_google_this_queue1__google_
+===
+X: Search for _google_ on internet .
+A: _xa_taught_value_google_this_queue1__google_
+===
+X: Search _google_ on the internet .
+A: _xa_taught_value_google_this_queue1__google_
+===
+X: Search for _google_ on web .
+A: _xa_taught_value_google_this_queue1__google_
+===
+X: Search _google_ on the web .
 A: _xa_taught_value_google_this_queue1__google_
 ===

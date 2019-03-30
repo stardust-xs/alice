@@ -74,31 +74,33 @@ def core_preprocess(parsed_dir):
                 if len(samples):
                     conversations.append(samples)
 
-        with open(full_new_name, 'a') as output_file:
-            counter_index = 0
-            depth = 0
-            for conversation in conversations:
-                counter_index += 1
-                step = 2
-                for counter_index in range(0, len(conversation) - 1, step):
-                    source_tokens = nltk.word_tokenize(
-                        conversation[counter_index]['text'])
-                    target_tokens = nltk.word_tokenize(
-                        conversation[counter_index + 1]['text'])
+            with open(full_new_name, 'a') as output_file:
+                counter_index = 0
+                depth = 0
+                for conversation in conversations:
+                    counter_index += 1
+                    step = 2
+                    for counter_index in range(0, len(conversation) - 1, step):
+                        source_tokens = nltk.word_tokenize(
+                            conversation[counter_index]['text'])
+                        target_tokens = nltk.word_tokenize(
+                            conversation[counter_index + 1]['text'])
 
-                    source_line = 'X: ' + ' '.join(source_tokens[:]).strip()
-                    target_line = 'A: ' + ' '.join(target_tokens[:]).strip()
+                        source_line = 'X: ' + \
+                            ' '.join(source_tokens[:]).strip()
+                        target_line = 'A: ' + \
+                            ' '.join(target_tokens[:]).strip()
 
-                    output_file.write('{}\n'.format(source_line))
-                    output_file.write('{}\n'.format(target_line))
+                        output_file.write('{}\n'.format(source_line))
+                        output_file.write('{}\n'.format(target_line))
 
-                output_file.write('===\n')
-                depth += 1
-                end_time = datetime.now()
-                elapsed_time = (end_time - start_time)
-                print('\r# {:,} conversations processed in {}.'.format(
-                    depth, str(elapsed_time).split('.')[0]), end='')
-                sys.stdout.flush()
+                    output_file.write('===\n')
+                    depth += 1
+                    end_time = datetime.now()
+                    elapsed_time = (end_time - start_time)
+                    print('\r# {:,} conversations processed in {}.'.format(
+                        depth, str(elapsed_time).split('.')[0]), end='')
+                    sys.stdout.flush()
 
 
 if __name__ == '__main__':

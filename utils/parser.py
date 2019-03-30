@@ -86,52 +86,59 @@ class Parser(object):
         subreddit_dict = {}
         conversation_line_dict = {}
         cache_count = 0
+        raw_data = self.get_raw_data_enumerator()
         output_handler = OutputHandler(os.path.join(
             self.output_path, self.output_file), self.output_file_size)
 
+        for count_lines, line in enumerate(raw_data):
+            line = line.decode('utf-8')
+            if len(line) > 1 and (line[-1] == '}' or line[-2] == '}'):
+                conversation_line = json.loads(line)
+                if self.post_qualifies(conversation_line):
+                    sub = conversation_line['subreddit']
+                    if sub in subreddit_dict:
+                        subreddit_dict[sub] += 1
+                    else:
+                        subreddit_dict[sub] = 1
+                    conversation_line_dict[conversation_line['name']] = RedditConversationLine(
+                        conversation_line)
+                    cache_count += 1
+                    if cache_count % self.print_every == 0:
+                        end_time = datetime.now()
+                        elapsed_time = (end_time - start_time)
+                        print('\r# {:,} lines cached in {}.'.format(
+                            cache_count, str(elapsed_time).split('.')[0]), end='')
+                        sys.stdout.flush()
+                    if cache_count > self.conversation_line_cache_size:
+                        print()
+                        self.process_cached_conversation_lines(
+                            conversation_line_dict)
+                        self.write_cached_conversation_lines(
+                            conversation_line_dict, output_handler)
+                        self.generate_subreddit_report(
+                            subreddit_dict)
+                        conversation_line_dict.clear()
+                        cache_count = 0
+                    end_time = datetime.now()
+                    elapsed_time = (end_time - start_time)
+
+        self.process_cached_conversation_lines(conversation_line_dict)
+        self.write_cached_conversation_lines(
+            conversation_line_dict, output_handler)
+        self.generate_subreddit_report(subreddit_dict)
+
+    def get_raw_data_enumerator(self):
         for input_file in os.listdir(alice.datasets_dir):
             if input_file.endswith(alice.bz2_file):
                 loading_start_time = datetime.now()
                 current_input_file = os.path.join(
                     alice.datasets_dir, input_file)
                 self.input_file = current_input_file
-                print('\r# Loading "{}" file in memory at {}.'.format(
-                    input_file, loading_start_time.strftime('%H:%M %p')))
+                print('\n# Loading "{}" file in memory at {}.'.format(
+                    input_file, loading_start_time.strftime('%I:%M %p')))
                 with BZ2File(self.input_file, 'r') as raw_data:
                     for line in raw_data:
-                        line = line.decode('utf-8')
-                        if len(line) > 1 and (line[-1] == '}' or line[-2] == '}'):
-                            conversation_line = json.loads(line)
-                            if self.post_qualifies(conversation_line):
-                                sub = conversation_line['subreddit']
-                                if sub in subreddit_dict:
-                                    subreddit_dict[sub] += 1
-                                else:
-                                    subreddit_dict[sub] = 1
-                                conversation_line_dict[conversation_line['name']] = RedditConversationLine(
-                                    conversation_line)
-                                cache_count += 1
-                                if cache_count % self.print_every == 0:
-                                    end_time = datetime.now()
-                                    elapsed_time = (end_time - start_time)
-                                    print('\r# {:,} lines cached in {}.'.format(
-                                        cache_count, str(elapsed_time).split('.')[0]), end='')
-                                    sys.stdout.flush()
-                                if cache_count > self.conversation_line_cache_size:
-                                    print()
-                                    self.process_cached_conversation_lines(
-                                        conversation_line_dict)
-                                    self.write_cached_conversation_lines(
-                                        conversation_line_dict, output_handler)
-                                    self.generate_subreddit_report(
-                                        subreddit_dict)
-                                    conversation_line_dict.clear()
-                                    cache_count = 0
-
-        self.process_cached_conversation_lines(conversation_line_dict)
-        self.write_cached_conversation_lines(
-            conversation_line_dict, output_handler)
-        self.generate_subreddit_report(subreddit_dict)
+                        yield line
 
     def post_qualifies(self, json_object):
         """
@@ -339,7 +346,8 @@ class OutputHandler(object):
         """
         counter_index = 1
         while True:
-            path = '{}{}'.format(self.base_path, alice.bz2_file)
+            path = '{}_{}{}'.format(
+                self.base_path, counter_index, alice.bz2_file)
             if not os.path.exists(path):
                 break
             counter_index += 1
@@ -354,28 +362,53 @@ if __name__ == '__main__':
         alice.create_dir(dir)
 
     Parser().parse()
+
+    line_count = 0
+
+    for input_file in os.listdir(alice.parsed_dir):
+        if input_file.endswith(alice.bz2_file):
+            loading_start_time = datetime.now()
+            current_input_file = os.path.join(
+                alice.parsed_dir, input_file)
+            print('\n# Loading compressed "{}" file in memory at {}.'.format(
+                input_file, loading_start_time.strftime('%I:%M %p')), end='')
+            sys.stdout.flush()
+            with BZ2File(current_input_file, 'r') as raw_data:
+                for line in raw_data:
+                    lnstrp = line.strip()
+                    if not lnstrp:
+                        continue
+                    if lnstrp.startswith(b'X:'):
+                        line_count += 1
+
     end_time = datetime.now()
     elapsed_time = (end_time - start_time)
-    line_count = 0
-    with BZ2File(alice.cassiopeia_output_file, 'r') as file:
-        for line in file:
-            lnstrp = line.strip()
-            if not lnstrp:
-                continue
-            if lnstrp.startswith(b'X:'):
-                line_count += 1
-    print('\r# {:,} conversations logged in {}.'.format(
+    print('\n# Total {:,} conversations logged in {}.'.format(
         line_count, str(elapsed_time).split('.')[0]))
 
     end_time = datetime.now()
     elapsed_time = (end_time - start_time)
-    print('# Compressed "Cassiopeia" file created. Memory used {} on disk.'.format(
-        alice.file_size(alice.cassiopeia_output_file)))
+    total_data_memory = 0
+    for input_file in os.listdir(alice.parsed_dir):
+        if input_file.endswith(alice.bz2_file):
+            current_input_file = os.path.join(alice.parsed_dir, input_file)
+            total_data_memory = total_data_memory + \
+                float(alice.file_size(current_input_file)[:-3])
+    print('# Compressed "cassiopeia" files created. Memory used {} MB on disk.'.format(
+        total_data_memory))
+
+    for input_file in os.listdir(alice.parsed_dir):
+        if input_file.endswith(alice.bz2_file):
+            current_input_file = os.path.join(alice.parsed_dir, input_file)
+            zipfile = BZ2File(current_input_file)
+            data = zipfile.read()
+            open(alice.cassiopeia_file, 'wb').write(data)
+
+    end_time = datetime.now()
+    elapsed_time = (end_time - start_time)
     print('\r# Uncompressing file in same directory. Total time took {}.\n'.format(
         str(elapsed_time).split('.')[0]), end='')
     sys.stdout.flush()
-    zipfile = BZ2File(alice.cassiopeia_output_file)
-    data = zipfile.read()
-    open(alice.cassiopeia_file, 'wb').write(data)
+
     print('# Uncompressed data is of {}'.format(
         alice.file_size(alice.cassiopeia_file)))
