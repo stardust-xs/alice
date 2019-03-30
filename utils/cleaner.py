@@ -193,3 +193,4 @@ if __name__ == '__main__':
     cleaned_file.write_cleaned_conversations(alice.cassiopeia_temp_file)
     print('\n# {} temporary file created.'.format(
         alice.file_size(alice.cassiopeia_temp_file)))
+    print('# Run .\\preprocessing.py file to continue.')

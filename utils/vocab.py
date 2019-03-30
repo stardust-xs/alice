@@ -175,3 +175,4 @@ if __name__ == '__main__':
     else:
         print('\r# Error: {} file not found'.format(alice.exception_file))
     generate_vocab_file(alice.core_dir)
+    print('# Run .\\train.py file to continue.')

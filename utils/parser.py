@@ -409,6 +409,6 @@ if __name__ == '__main__':
     print('\r# Uncompressing file in same directory. Total time took {}.\n'.format(
         str(elapsed_time).split('.')[0]), end='')
     sys.stdout.flush()
-
     print('# Uncompressed data is of {}'.format(
         alice.file_size(alice.cassiopeia_file)))
+    print('# Run .\\cleaner.py file to continue.')

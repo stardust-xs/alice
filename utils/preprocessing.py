@@ -111,3 +111,4 @@ if __name__ == '__main__':
     core_preprocess(alice.parsed_dir)
     print('\n# {} processed file created.'.format(
         alice.file_size(alice.cassiopeia_cleaned_file)))
+    print('# Run .\\temp_vocab.py file to continue.')

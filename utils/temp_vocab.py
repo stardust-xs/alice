@@ -164,3 +164,4 @@ if __name__ == '__main__':
         print('\r# Error: {} file not found'.format(
             os.path.join(alice.cassiopeia_temp_file)))
     generate_vocab_file(alice.core_dir)
+    print('# Run .\\refiner.py file to continue.')

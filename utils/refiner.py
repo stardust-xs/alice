@@ -105,3 +105,4 @@ if __name__ == '__main__':
     refiner()
     print('\n# Cassiopeia file created of {}.'.format(
         alice.file_size(alice.cassiopeia_file)))
+    print('# Run .\\vocab.py file to continue.')
