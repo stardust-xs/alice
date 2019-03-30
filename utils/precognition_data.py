@@ -43,6 +43,8 @@ import datetime as dt
 import calendar as cal
 import webbrowser as wb
 
+import wikipedia
+
 import alice_config as alice
 
 
@@ -367,11 +369,11 @@ class PrecognitionData:
     # Functions with Alice
     def whats_your_age():
         current_age = alice.current_age
-        return random.choice([f'I\'m {current_age} days old.', f'{current_age} days old.', f'I don\'t have a birth date as such but it\'s been about {current_age} days into my existence.'])
+        return random.choice([f'I\'m {current_age} days old.', f'{current_age} days old.', f'Technically, I don\'t have a birth date as such but it\'s been about {current_age} days into my existence.'])
 
     def whats_your_gender():
         gender = alice.gender
-        return random.choice([f'I\'m a program. I\'m without form. But my creator programmed me to be a {gender}.', f'I\'m a program. But I do have feminine personality.', f'What can I say, XA made me a {gender}. ;)'])
+        return random.choice([f'I\'m a program. I\'m without form. But my creator programmed me to be a {gender}.', f'I\'m a program. I\'m without form. But I do have feminine personality.', f'What can I say, {alice.creator_name} programmed me to be his female assistant.'])
 
     def whens_your_birthday():
         birthday = alice.created_date
@@ -397,6 +399,10 @@ class PrecognitionData:
     def google_this(google):
         wb.open(f'https://google.com/search?q={google}')
         return random.choice(['Here you go.', 'Okay...'])
+
+    @staticmethod
+    def wikisearch_this(wiki_topic):
+        return wikipedia.summary(wiki_topic, sentences=5)
 
     # Client Code
     def client_code_show_picture_randomly(self, picture_name):
@@ -490,6 +496,7 @@ def invoke_precognition(
         'where_you_from_country': PrecognitionData.where_you_from_country,
 
         'google_this': PrecognitionData.google_this,
+        'wikisearch_this': PrecognitionData.wikisearch_this,
 
         'ask_how_are_you_if_not_yet': precog_data.ask_how_are_you_if_not_yet,
         'ask_name_if_not_yet': precog_data.ask_name_if_not_yet,
@@ -529,6 +536,8 @@ def invoke_precognition(
                 return precog_dict[precog_name](queue_list[1])
             elif precog_queue == '_google_':
                 return precog_dict[precog_name](queue_list[0])
+            elif precog_queue == '_wikipedia_':
+                return precog_dict[precog_name](queue_list[0])
             else:
                 return precog_dict[precog_name](precog_queue)
         else:
@@ -545,6 +554,8 @@ def invoke_precognition(
                 elif precog_queue1 == '_name_' and precog_queue2 == '_call_me_':
                     return precog_dict[precog_name](queue1_val, queue2_val)
                 elif precog_queue1 == '_google_':
+                    return precog_dict[precog_name](queue1_val)
+                elif precog_queue1 == '_wikipedia_':
                     return precog_dict[precog_name](queue1_val)
 
     return random.choice(['I\'m sorry. I don\'t know the answer...', 'I don\'t have answer to that one.', 'Sorry, I don\'t know.'])

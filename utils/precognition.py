@@ -107,7 +107,6 @@ class AlicePrecognition(object):
             question: Question asked during inference.
 
         """
-
         conversation_session = self.session_data.get_session(session_id)
         conversation_session.before_precognition()
 

@@ -57,10 +57,12 @@ def check_patterns_and_replace(question):
     if not pattern_matched:
         pattern_matched, new_sentence, queue_list = _check_google_search_and_replace(
             new_sentence)
+    return pattern_matched, new_sentence, queue_list
 
     if not pattern_matched:
-        pattern_matched, new_sentence, queue_list = _check_wikipedia_search_and_replace(
+        pattern_matched, new_sentence, queue_list = _check_wikipedia_this_and_replace(
             new_sentence)
+    return pattern_matched, new_sentence, queue_list
 
 
 def _check_arithmetic_pattern_and_replace(sentence):
@@ -304,7 +306,7 @@ def _check_google_search_and_replace(sentence):
         return False, sentence, queue_list
 
 
-def _check_wikipedia_search_and_replace(sentence):
+def _check_wikipedia_this_and_replace(sentence):
     """
     Checks if search on wikipedia is asked during inference.
 
@@ -312,56 +314,56 @@ def _check_wikipedia_search_and_replace(sentence):
         sentence: Statement during inference.
     """
     pass
-#     tokens = nltk.word_tokenize(sentence)
-#     tmp_sentence = ' '.join(tokens[:]).strip()
-#
-#     patt_name_1 = re.compile(
-#         r'(\s|^)search\s+(.+?)\son+\s+((wikipedia|the\swikipedia))', re.IGNORECASE)
-#     patt_name_2 = re.compile(
-#         r'(\s|^)search\s+for\s+(.+?)\son+\s+((wikipedia|the\swikipedia))', re.IGNORECASE)
-#     patt_name_3 = re.compile(
-#         r'(^)who\s+is\s+(([A-Za-z]+[,.]?[ ]?|[a-z]+[\'-]?)+)+($|\?)', re.IGNORECASE)
-#
-#     wikipedia_search_1 = re.search(patt_name_1, tmp_sentence)
-#     wikipedia_search_2 = re.search(patt_name_2, tmp_sentence)
-#     wikipedia_search_3 = re.search(patt_name_3, tmp_sentence)
-#     queue_list = []
-#
-#     found = 0
-#
-#     if wikipedia_search_3:
-#         wikipedia_open = wikipedia_search_3.group(2).strip()
-#         queue_list.append(wikipedia_open)
-#         new_sentence = sentence.replace(wikipedia_open, ' _wikipedia_ ')
-#         found += 1
-#     else:
-#         if wikipedia_search_2:
-#             wikipedia_open = wikipedia_search_2.group(2).strip()
-#             queue_list.append(wikipedia_open)
-#             new_sentence = sentence.replace(wikipedia_open, ' _wikipedia_ ')
-#             found += 1
-#         else:
-#             if wikipedia_search_1:
-#                 wikipedia_open = wikipedia_search_1.group(2).strip()
-#                 queue_list.append(wikipedia_open)
-#                 new_sentence = sentence.replace(
-#                     wikipedia_open, ' _wikipedia_ ')
-#                 found += 1
-#             else:
-#                 queue_list.append('')
-#                 new_sentence = sentence
-#
-#     if found >= 1:
-#         return True, new_sentence, queue_list
-#     else:
-#         return False, sentence, queue_list
+    tokens = nltk.word_tokenize(sentence)
+    tmp_sentence = ' '.join(tokens[:]).strip()
+
+    patt_name_1 = re.compile(
+        r'(\s|^)search\s+(.+?)\son+\s+((wikipedia|the\swikipedia))', re.IGNORECASE)
+    patt_name_2 = re.compile(
+        r'(\s|^)search\s+for\s+(.+?)\son+\s+((wikipedia|the\swikipedia))', re.IGNORECASE)
+    patt_name_3 = re.compile(
+        r'(^)who\s+is\s+(([A-Za-z]+[,.]?[ ]?|[a-z]+[\'-]?)+)+($|\?)', re.IGNORECASE)
+
+    wikipedia_this_1 = re.search(patt_name_1, tmp_sentence)
+    wikipedia_this_2 = re.search(patt_name_2, tmp_sentence)
+    wikipedia_this_3 = re.search(patt_name_3, tmp_sentence)
+    queue_list = []
+
+    found = 0
+
+    if wikipedia_this_3:
+        wikipedia_open = wikipedia_this_3.group(2).strip()
+        queue_list.append(wikipedia_open)
+        new_sentence = sentence.replace(wikipedia_open, ' _wikipedia_ ')
+        found += 1
+    else:
+        if wikipedia_this_2:
+            wikipedia_open = wikipedia_this_2.group(2).strip()
+            queue_list.append(wikipedia_open)
+            new_sentence = sentence.replace(wikipedia_open, ' _wikipedia_ ')
+            found += 1
+        else:
+            if wikipedia_this_1:
+                wikipedia_open = wikipedia_this_1.group(2).strip()
+                queue_list.append(wikipedia_open)
+                new_sentence = sentence.replace(
+                    wikipedia_open, ' _wikipedia_ ')
+                found += 1
+            else:
+                queue_list.append('')
+                new_sentence = sentence
+
+    if found >= 1:
+        return True, new_sentence, queue_list
+    else:
+        return False, sentence, queue_list
 
 
 # if __name__ == '__main__':
 #
 #     sentence = 'who is donald trump?'
 #     print('# {}'.format(sentence))
-#     pattern, ns, ql = _check_wikipedia_search_and_replace(sentence)
+#     pattern, ns, ql = _check_wikipedia_this_and_replace(sentence)
 #     print(pattern, ns, ql)
 #
 #     sentence = 'My name is akshay mestry. Please call me Mr. XA.'
