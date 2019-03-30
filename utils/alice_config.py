@@ -96,7 +96,7 @@ today_date = date.today()
 date_difference = today_date - created_date
 current_age = date_difference.days
 primary_language = 'English'
-language_code = 'en'
+language_code = 'EN'
 
 # XA's details
 creator_name = random.choice(['XA', 'Mr. XA'])
