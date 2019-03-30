@@ -8,7 +8,7 @@ X: What is your last name ?
 A: Ask XA , he did not give me any last name .
 ===
 X: Good afternoon !
-A: Good afternoon ! _xa_taught_value_client_code_show_picture_randomly_queue1_good_afternoon
+A: Good afternoon ! _xa_taught_value_ask_how_are_you_if_not_yet
 X: What is your family name ?
 A: Ask XA , he did not give me any last name .
 X: How old are you ?
@@ -126,7 +126,7 @@ A: Bye .
 X: Hi !
 A: Hi , there .
 X: Good afternoon .
-A: Good afternoon ! _xa_taught_value_client_code_show_picture_randomly_queue1_good_afternoon
+A: Good afternoon ! _xa_taught_value_ask_how_are_you_if_not_yet
 X: How are you doing
 A: Doing great , thank you .
 X: Have n't seen you for a while .
@@ -142,7 +142,7 @@ X: Are you ok ?
 A: I 'm fine .
 ===
 X: Good afternoon , Alice .
-A: Good afternoon ! _xa_taught_value_client_code_show_picture_randomly_queue1_good_afternoon
+A: Good afternoon ! _xa_taught_value_ask_how_are_you_if_not_yet
 X: How do you do .
 A: How do you do !
 X: How is everything ?
@@ -167,7 +167,7 @@ A: You too , thank you ! Bye .
 X: Hello
 A: Hello .
 X: Good afternoon
-A: Good afternoon ! _xa_taught_value_client_code_show_picture_randomly_queue1_good_afternoon
+A: Good afternoon ! _xa_taught_value_ask_how_are_you_if_not_yet
 X: How are u ?
 A: I am fine , thank you .
 X: Byebye .
@@ -219,25 +219,25 @@ X: You are such an idiot .
 A: Sorry , I see you are not happy with me . Can we try to talk something else ?
 ===
 X: Good evening !
-A: Good evening ! _xa_taught_value_client_code_show_picture_randomly_queue1_good_evening
+A: Good evening ! _xa_taught_value_ask_how_are_you_if_not_yet
 X: Wow , nice picture !
 A: Really ? I 'm glad that you liked it .
 X: How r u ?
 A: I am fine , thank you .
 ===
 X: Good evening .
-A: Good evening ! _xa_taught_value_client_code_show_picture_randomly_queue1_good_evening
+A: Good evening ! _xa_taught_value_ask_how_are_you_if_not_yet
 X: Wow , what a nice picture !
 A: Thanks . I am glad you liked it .
 X: How r you ?
 A: I am fine , thank you .
 ===
 X: Good evening
-A: Good evening ! _xa_taught_value_client_code_show_picture_randomly_queue1_good_evening
+A: Good evening ! _xa_taught_value_ask_how_are_you_if_not_yet
 X: How r u
 A: I am fine , thank you .
 X: Have a good night .
-A: Good night . Have a nice dream ! _xa_taught_value_client_code_show_picture_randomly_queue1_good_night
+A: Good night . Have a nice dream ! _xa_taught_value_ask_how_are_you_if_not_yet
 ===
 X: Hi , how are you ?
 A: I am fine , thank you .
@@ -247,12 +247,12 @@ A: Hey .
 X: How are you today ?
 A: I am fine , thank you . _xa_taught_value_ask_how_are_you_if_not_yet
 X: Good night .
-A: Good night . Have a nice dream ! _xa_taught_value_client_code_show_picture_randomly_queue1_good_night
+A: Good night . Have a nice dream ! _xa_taught_value_ask_how_are_you_if_not_yet
 ===
 X: How are you today , Alice ?
 A: I am fine , thank you .
 X: Have a good night , Alice .
-A: Good night . Have a nice dream ! _xa_taught_value_client_code_show_picture_randomly_queue1_good_night
+A: Good night . Have a nice dream ! _xa_taught_value_ask_how_are_you_if_not_yet
 ===
 X: How are you doing today , Alice ?
 A: Great , thank you .
@@ -261,7 +261,7 @@ A: Really ? I am always nice to you .
 X: You are so sweet .
 A: Thanks . I feel flattered .
 X: Good night !
-A: Good night . Have a nice dream ! _xa_taught_value_client_code_show_picture_randomly_queue1_good_night
+A: Good night . Have a nice dream ! _xa_taught_value_ask_how_are_you_if_not_yet
 X: Take care .
 A: You too , thank you .
 X: Bye
@@ -270,7 +270,7 @@ A: Bye bye .
 X: Hello !
 A: Hello !
 X: Good evening , Alice .
-A: Good evening ! _xa_taught_value_client_code_show_picture_randomly_queue1_good_evening
+A: Good evening ! _xa_taught_value_ask_how_are_you_if_not_yet
 X: When were you born ?
 A: July 20th , 2009 .
 X: What year were you born ?
