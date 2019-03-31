@@ -396,14 +396,15 @@ if __name__ == '__main__':
     print('# Compressed "cassiopeia" files created. Memory used {} MB on disk.'.format(
         total_data_memory))
 
-    for input_file in os.listdir(alice.parsed_dir):
-        loading_start_time = datetime.now()
-        current_input_file = os.path.join(
-            alice.parsed_dir, input_file)
-        print('\n# Loading compressed "{}" file in memory at {}.'.format(
-            input_file, loading_start_time.strftime('%I:%M %p')), end='')
-        sys.stdout.flush()
+    open(alice.cassiopeia_file, 'a').close()
+
+    for input_file in list(os.listdir(alice.parsed_dir)):
+        current_input_file = os.path.join(alice.parsed_dir, input_file)
         if input_file.endswith(alice.bz2_file):
+            loading_start_time = datetime.now()
+            print('\n# Loading compressed "{}" file in memory at {}.'.format(
+                input_file, loading_start_time.strftime('%I:%M %p')), end='')
+            sys.stdout.flush()
             current_input_file = os.path.join(alice.parsed_dir, input_file)
             zipfile = BZ2File(current_input_file)
             data = zipfile.read()
