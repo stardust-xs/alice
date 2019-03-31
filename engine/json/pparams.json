@@ -1,6 +1,6 @@
 {
     "conversation_line_cache_size": 1e7,
-    "output_file_size": 2e8,
+    "output_file_size": 209715200,
     "print_every": 1000,
     "subreddit_whitelist": [],
     "subreddit_blacklist": [
@@ -15,6 +15,7 @@
         "[",
         "http://",
         "https://",
+        "www.",
         " r/",
         " u/",
         "/r/",
