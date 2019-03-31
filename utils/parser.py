@@ -220,7 +220,6 @@ class Parser(object):
                             parent.child_id = my_id
                 else:
                     my_conversation_line.parent_id = None
-        print()
 
     def write_cached_conversation_lines(self, conversation_line_dict, output_handler):
         """
@@ -398,11 +397,17 @@ if __name__ == '__main__':
         total_data_memory))
 
     for input_file in os.listdir(alice.parsed_dir):
+        loading_start_time = datetime.now()
+        current_input_file = os.path.join(
+            alice.parsed_dir, input_file)
+        print('\n# Loading compressed "{}" file in memory at {}.'.format(
+            input_file, loading_start_time.strftime('%I:%M %p')), end='')
+        sys.stdout.flush()
         if input_file.endswith(alice.bz2_file):
             current_input_file = os.path.join(alice.parsed_dir, input_file)
             zipfile = BZ2File(current_input_file)
             data = zipfile.read()
-            open(alice.cassiopeia_file, 'wb').write(data)
+            open(alice.cassiopeia_file, 'a+b').write(data)
 
     end_time = datetime.now()
     elapsed_time = (end_time - start_time)
