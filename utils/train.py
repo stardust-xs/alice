@@ -78,7 +78,7 @@ class Trainer(object):
         """
         summary_name = 'alice_training_logs'
         summary_writer = tf.summary.FileWriter(os.path.join(
-            alice.logs_dir, summary_name), self.graph)
+            alice.model_dir, summary_name), self.graph)
 
         log_device_placement = self.hparams.log_device_placement
         num_epochs = self.hparams.num_epochs

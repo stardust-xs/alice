@@ -30,9 +30,12 @@ remaining underlying spaces.
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
+from datetime import datetime
 import sys
 
 import alice_config as alice
+
+start_time = datetime.now()
 
 
 def refiner():
@@ -53,7 +56,12 @@ def refiner():
     # Correct the conversation endings
     with open(alice.cassiopeia_cleaned_file, 'r') as input_file:
         samples = []
-        for line in input_file:
+        for num, line in enumerate(input_file):
+            end_time = datetime.now()
+            elapsed_time = (end_time - start_time)
+            print('\r# {:,} lines cached in {}.'.format(
+                num, str(elapsed_time).split('.')[0]), end='')
+            sys.stdout.flush()
             lnstrp = line.strip()
             if not lnstrp or lnstrp.startswith('#=='):
                 continue
@@ -68,6 +76,7 @@ def refiner():
             conversations.append(samples)
 
     # Add back the delimiters
+    print('\n# {:,} conversations logged.'.format(len(conversations)))
     with open(alice.cassiopeia_file, 'a') as output_file:
         count = 0
         for conversation in conversations:
@@ -87,8 +96,10 @@ def refiner():
                             skip = True
                             count += 1
                             if count % 1000 == 0:
-                                print('\r# {:,} conversations skipped.'.format(
-                                    count), end='')
+                                end_time = datetime.now()
+                                elapsed_time = (end_time - start_time)
+                                print('\r# {:,} conversations skipped in {}.'.format(
+                                    count, str(elapsed_time).split('.')[0]), end='')
                                 sys.stdout.flush()
                             break
 

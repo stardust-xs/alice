@@ -63,7 +63,7 @@ class Cleaner():
             if os.path.isfile(full_path_name) and data_file.lower().endswith(alice.xames3_file):
                 loading_start_time = datetime.now()
                 print('\r# Loading "{}" file in memory at {}.'.format(
-                    data_file, loading_start_time.strftime('%H:%M %p')))
+                    data_file, loading_start_time.strftime('%I:%M %p')))
                 with open(full_path_name, 'r', encoding='iso-8859-1') as file:
                     samples = []
                     for line in file:

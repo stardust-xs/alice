@@ -363,15 +363,11 @@ if __name__ == '__main__':
     Parser().parse()
 
     line_count = 0
-
+    print('# Reading number of conversations logged.')
     for input_file in os.listdir(alice.parsed_dir):
         if input_file.endswith(alice.bz2_file):
             loading_start_time = datetime.now()
-            current_input_file = os.path.join(
-                alice.parsed_dir, input_file)
-            print('\n# Loading compressed "{}" file in memory at {}.'.format(
-                input_file, loading_start_time.strftime('%I:%M %p')), end='')
-            sys.stdout.flush()
+            current_input_file = os.path.join(alice.parsed_dir, input_file)
             with BZ2File(current_input_file, 'r') as raw_data:
                 for line in raw_data:
                     lnstrp = line.strip()
@@ -402,7 +398,7 @@ if __name__ == '__main__':
         current_input_file = os.path.join(alice.parsed_dir, input_file)
         if input_file.endswith(alice.bz2_file):
             loading_start_time = datetime.now()
-            print('\n# Loading compressed "{}" file in memory at {}.'.format(
+            print('\r# Loading compressed "{}" file in memory at {}.'.format(
                 input_file, loading_start_time.strftime('%I:%M %p')), end='')
             sys.stdout.flush()
             current_input_file = os.path.join(alice.parsed_dir, input_file)
