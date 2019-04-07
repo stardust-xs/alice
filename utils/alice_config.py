@@ -145,7 +145,7 @@ primary_language = 'English'
 language_code = 'EN'
 
 # XA's details
-creator_name = random.choice(['XA', 'Mr. XA'])
+creator_name = random.choice(['XA', 'Mr. XA', 'Boss'])
 creator_gender = random.choice(['Guy', 'Man', 'Gentleman'])
 creator_next_birthday = date(int((date.today().year) + 1), 5, 4)
 
@@ -173,8 +173,8 @@ legacy_dir = os.path.join(engine_dir, 'legacy\\')
 layers_dir = os.path.join(engine_dir, 'layers\\')
 logs_dir = os.path.join(engine_dir, 'logs\\')
 model_dir = os.path.join(engine_dir, 'model\\')
-assistance_dir = os.path.join(core_dir, 'assistance\\')  # Function data
-character_dir = os.path.join(core_dir, 'character\\')  # Alice data
+assistance_dir = os.path.join(core_dir, 'assistance\\')
+character_dir = os.path.join(core_dir, 'character\\')
 datasets_dir = os.path.join(core_dir, 'datasets\\')
 parsed_dir = os.path.join(datasets_dir, 'parsed\\')
 
@@ -230,11 +230,3 @@ conversation_sep = '==='
 # Length variables
 max_len = 1000
 hparams_len = 50
-
-# run parse_data
-# run clean_data
-# run preprocessing
-# run temp_vocab_generator
-# run clean_further
-# run vocab_generator
-# run trainer
