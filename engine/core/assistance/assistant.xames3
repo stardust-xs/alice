@@ -16,18 +16,3 @@ A: _xa_taught_value_google_this_queue1__google_
 X: Search _google_ on the web .
 A: _xa_taught_value_google_this_queue1__google_
 ===
-X: Who is _wikipedia_ ?
-A: _xa_taught_value_wikisearch_this_queue1__wikipedia_
-===
-X: Search for _wikipedia_ on wikipedia .
-A: _xa_taught_value_wikisearch_this_queue1__wikipedia_
-===
-X: Search _wikipedia_ on wikipedia .
-A: _xa_taught_value_wikisearch_this_queue1__wikipedia_
-===
-X: Search for _wikipedia_ on the wikipedia .
-A: _xa_taught_value_wikisearch_this_queue1__wikipedia_
-===
-X: Search _wikipedia_ on the wikipedia .
-A: _xa_taught_value_wikisearch_this_queue1__wikipedia_
-===

@@ -39,6 +39,41 @@ from __future__ import print_function
 from datetime import datetime, date
 import os
 import random
+import socket
+import requests
+
+try:
+    from urllib2 import urlopen, URLError
+    from urlparse import urlparse
+except ImportError:
+    from urllib.parse import urlparse
+    from urllib.request import urlopen, URLError
+
+
+class NetworkStatus(object):
+    """
+    Checks if the system is connected to the network or note.
+    """
+    google_url = 'https://www.google.com/'
+
+    def __init__(self):
+        pass
+
+    def test_internet(self):
+        try:
+            data = urlopen(self.google_url, timeout=5)
+        except URLError:
+            return False, random.choice(['# No network detected.', '# I\'m offline.', '# We\'re offline.'])
+
+        try:
+            host = data.fp._sock.fp._sock.getpeername()
+        except AttributeError:
+            host = data.fp.raw._sock.getpeername()
+
+        self.google_url = 'http://' + (host[0] if len(host) == 2 else
+                                       socket.gethostbyname(urlparse(data.geturl()).hostname))
+
+        return True, random.choice(['# I\'m online and ready.', '# I\'m online.', '# We\'re online.'])
 
 
 def create_dir(dir_name):
@@ -84,12 +119,23 @@ def file_size(file_path):
         return convert_bytes(file_size_info.st_size)
 
 
+def location_details(location):
+    checker = NetworkStatus()
+    net_stat, alice_stat = checker.test_internet()
+    if net_stat is True:
+        locate_url = 'https://api.ipdata.co?api-key=test'
+        dispostion = requests.get(locate_url).json()
+        return dispostion[location]
+    else:
+        return alice_stat
+
+
 # Self dispostion
 print_alice = 'A . L . I . C . E '
 shortname = 'Alice'
 fullname = 'A Logically Interacting Computing Entity'
 codename = 'cassiopeia'
-current_version = '1.2.4.20190331'
+current_version = '1.2.4.20190406'
 gender = random.choice(['Woman', 'Girl', 'Female', 'Lady'])
 created_date = birthday = date(2018, 11, 27)
 today_date = date.today()

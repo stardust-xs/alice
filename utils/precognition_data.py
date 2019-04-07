@@ -43,8 +43,6 @@ import datetime as dt
 import calendar as cal
 import webbrowser as wb
 
-import wikipedia
-
 import alice_config as alice
 
 
@@ -114,13 +112,13 @@ class PrecognitionData:
     def basic_addition(num1, num2):
         res = num1 + num2
         desc = random.choice(PrecognitionData.simple_list)
-        return '{}{}'.format(desc, res)
+        return '{}{:,}'.format(desc, res)
 
     @staticmethod
     def basic_subtraction(num1, num2):
         res = num1 - num2
         desc = random.choice(PrecognitionData.simple_list)
-        return '{}{}'.format(desc, res)
+        return '{}{:,}'.format(desc, res)
 
     @staticmethod
     def basic_multiplication(num1, num2):
@@ -129,7 +127,7 @@ class PrecognitionData:
             desc = random.choice(PrecognitionData.difficult_list)
         else:
             desc = random.choice(PrecognitionData.simple_list)
-        return '{}{}'.format(desc, res)
+        return '{}{:,}'.format(desc, res)
 
     @staticmethod
     def basic_division(num1, num2):
@@ -143,7 +141,7 @@ class PrecognitionData:
                     desc = random.choice(PrecognitionData.difficult_list)
                 else:
                     desc = random.choice(PrecognitionData.difficult_list)
-                return '{}{}'.format(desc, res)
+                return '{}{:,}'.format(desc, res)
             else:
                 if num1 > 20 and num2 > 20:
                     desc = random.choice(PrecognitionData.difficult_list)
@@ -388,25 +386,17 @@ class PrecognitionData:
         return f'He\'s a {creator_gender}.'
 
     def where_you_from_city():
-        location_city = alice.location_city
+        location_city = alice.location_details('city')
         return location_city
 
     def where_you_from_country():
-        location_country_name = alice.location_country_name
+        location_country_name = alice.location_details('country_name')
         return location_country_name
 
     @staticmethod
     def google_this(google):
         wb.open(f'https://google.com/search?q={google}')
         return random.choice(['Here you go.', 'Okay...'])
-
-    @staticmethod
-    def wikisearch_this(wiki_topic):
-        return wikipedia.summary(wiki_topic, sentences=5)
-
-    # Client Code
-    def client_code_show_picture_randomly(self, picture_name):
-        return ' _client_code_show_picture_randomly_queue1_' + picture_name
 
     simple_list = [
         ' ',
@@ -496,7 +486,6 @@ def invoke_precognition(
         'where_you_from_country': PrecognitionData.where_you_from_country,
 
         'google_this': PrecognitionData.google_this,
-        'wikisearch_this': PrecognitionData.wikisearch_this,
 
         'ask_how_are_you_if_not_yet': precog_data.ask_how_are_you_if_not_yet,
         'ask_name_if_not_yet': precog_data.ask_name_if_not_yet,
@@ -514,8 +503,7 @@ def invoke_precognition(
 
         'correct_username': precog_data.correct_username,
         'clear_username_and_call_me': precog_data.clear_username_and_call_me,
-        'execute_pending_action_and_reply': precog_data.execute_pending_action_and_reply,
-        'client_code_show_picture_randomly': precog_data.client_code_show_picture_randomly
+        'execute_pending_action_and_reply': precog_data.execute_pending_action_and_reply
 
     }
 
@@ -534,9 +522,7 @@ def invoke_precognition(
                 return precog_dict[precog_name](queue_list[0])
             elif precog_queue == '_call_me_' and queue_list is not None and len(queue_list) >= 2:
                 return precog_dict[precog_name](queue_list[1])
-            elif precog_queue == '_google_':
-                return precog_dict[precog_name](queue_list[0])
-            elif precog_queue == '_wikipedia_':
+            elif precog_queue == '_google_' and queue_list is not None and len(queue_list) >= 1:
                 return precog_dict[precog_name](queue_list[0])
             else:
                 return precog_dict[precog_name](precog_queue)
@@ -553,9 +539,5 @@ def invoke_precognition(
                     return precog_dict[precog_name](queue2_val, queue1_val)
                 elif precog_queue1 == '_name_' and precog_queue2 == '_call_me_':
                     return precog_dict[precog_name](queue1_val, queue2_val)
-                elif precog_queue1 == '_google_':
-                    return precog_dict[precog_name](queue1_val)
-                elif precog_queue1 == '_wikipedia_':
-                    return precog_dict[precog_name](queue1_val)
 
     return random.choice(['I\'m sorry. I don\'t know the answer...', 'I don\'t have answer to that one.', 'Sorry, I don\'t know.'])
