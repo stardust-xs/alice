@@ -60,6 +60,8 @@ Pipeline shows the scope of the project
 	 * ### Known Issues
         * Cannot train the multiple training files (.bz2 files) ✅
 
+## Discontinued!
+
 ## Version History
 
 * [Latest Build](#latest-build)
