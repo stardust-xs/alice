@@ -1,5 +1,5 @@
 <h1 align="center">
-  A . L . I . C . E .
+  A . L . I . C . E
   <br>
 </h1>
 
